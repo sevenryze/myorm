@@ -1,4 +1,7 @@
-import { LoggerOptions, LoggerType } from "../../logger/Logger";
+import { IEntityClassConstructor } from "../../decorator/decorator-manager";
+import { DriverType } from "../../driver/driver-factory";
+import { LoggerOptions, LoggerType } from "../../logger/logger-factory";
+import { IMigration } from "../../migration/migration";
 
 /**
  * BaseConnectionOptions is set of connection options shared by all database types.
@@ -7,7 +10,7 @@ export interface IBaseConnectionOptions {
   /**
    * Database type. This value is required.
    */
-  readonly type: DatabaseType;
+  readonly type: DriverType;
 
   /**
    * Connection name. If connection name is not given then it will be called "default".
@@ -20,14 +23,14 @@ export interface IBaseConnectionOptions {
    * Accepts both entity classes and directories where from entities need to be loaded.
    * Directories support glob patterns.
    */
-  readonly entities?: (Function | string)[];
+  readonly entities?: IEntityClassConstructor[];
 
   /**
    * Migrations to be loaded for this connection.
    * Accepts both migration classes and directories where from migrations need to be loaded.
    * Directories support glob patterns.
    */
-  readonly migrations?: (Function | string)[];
+  readonly migrations?: IMigration[];
 
   /**
    * Logging options.
@@ -102,7 +105,6 @@ export interface IBaseConnectionOptions {
 /**
  * Database type.
  */
-type DatabaseType = "mysql" | "postgres" | "mariadb" | "sqlite" | "sqljs" | "mongodb";
 
 type CacheOption =
   | boolean

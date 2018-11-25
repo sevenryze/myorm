@@ -20,5 +20,5 @@
       }
     ]
   },
-  "include": ["src", "bin", "typings"]
+  "include": ["src", "bin", "typings", "example"]
 }

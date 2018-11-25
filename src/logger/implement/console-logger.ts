@@ -1,5 +1,6 @@
-import { BaseLogger } from "../base-logger";
-import { ILogger, LoggerOptions } from "../logger";
+import { ILogger } from "../logger";
+import { LoggerOptions } from "../logger-factory";
+import { BaseLogger } from "./base-logger";
 
 /**
  * Performs logging of the events.

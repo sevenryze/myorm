@@ -1,7 +1,7 @@
 /**
  * Options passed to QueryResultCache class.
  */
-export interface IQueryResultCacheOptions {
+export interface IQueryCacheOptions {
   /**
    * Cache identifier set by user.
    * Can be empty.

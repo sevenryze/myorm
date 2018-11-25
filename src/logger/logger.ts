@@ -22,15 +22,3 @@ export interface ILogger {
    */
   logMigration(message: string): any;
 }
-
-type LoggerLevel = "query" | "schema" | "error" | "warn" | "info" | "log" | "migration";
-
-/**
- * Logging options.
- */
-export type LoggerOptions = boolean | "all" | LoggerLevel[];
-
-/**
- * Logger type.
- */
-export type LoggerType = "advanced-console" | "simple-console" | "file" | "debug" | ILogger;

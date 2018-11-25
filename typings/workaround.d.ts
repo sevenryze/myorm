@@ -1,1 +1,1 @@
-declare module "your-module-name";
+declare module "mysql2";

@@ -1,5 +1,4 @@
 import { IBaseConnectionOptions } from "./base-options";
-import { IMysqlConnectionCredentialsOptions } from "./mysql-credentials-options";
 
 /**
  * MySQL specific connection options.
@@ -7,11 +6,6 @@ import { IMysqlConnectionCredentialsOptions } from "./mysql-credentials-options"
  * @see https://github.com/mysqljs/mysql#connection-options
  */
 export interface IMysqlConnectionOptions extends IBaseConnectionOptions, IMysqlConnectionCredentialsOptions {
-  /**
-   * Database type.
-   */
-  readonly type: "mysql" | "mariadb";
-
   /**
    * The charset for the connection. This is called "collation" in the SQL-level of MySQL (like utf8_general_ci).
    * If a SQL-level charset is specified (like utf8mb4) then the default collation for that charset is used.
@@ -126,4 +120,46 @@ export interface IMysqlConnectionOptions extends IBaseConnectionOptions, IMysqlC
      */
     readonly selector?: "RR" | "RANDOM" | "ORDER";
   };
+}
+
+/**
+ * MySQL specific connection credential options.
+ *
+ * @see https://github.com/mysqljs/mysql#connection-options
+ */
+interface IMysqlConnectionCredentialsOptions {
+  /**
+   * Connection url where perform connection to.
+   */
+  readonly url?: string;
+
+  /**
+   * Database host.
+   */
+  readonly host?: string;
+
+  /**
+   * Database host port.
+   */
+  readonly port?: number;
+
+  /**
+   * Database username.
+   */
+  readonly username?: string;
+
+  /**
+   * Database password.
+   */
+  readonly password?: string;
+
+  /**
+   * Database name to connect to.
+   */
+  readonly database?: string;
+
+  /**
+   * Object with ssl parameters or a string containing name of ssl profile.
+   */
+  readonly ssl?: any;
 }

@@ -1,5 +1,17 @@
-import { ConsoleLogger } from "./concrete/console-logger";
-import { ILogger, LoggerOptions, LoggerType } from "./logger";
+import { ConsoleLogger } from "./implement/console-logger";
+import { ILogger } from "./logger";
+
+/**
+ * Logger type.
+ */
+export type LoggerType = "advanced-console" | "simple-console" | "file" | "debug" | ILogger;
+
+type LoggerLevel = "query" | "schema" | "error" | "warn" | "info" | "log" | "migration";
+
+/**
+ * Logging options.
+ */
+export type LoggerOptions = boolean | "all" | LoggerLevel[];
 
 export function loggerFactory(logger?: LoggerType, options?: LoggerOptions): ILogger {
   if (logger instanceof Object) {
