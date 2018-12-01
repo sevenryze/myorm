@@ -1,4 +1,4 @@
-import { Pool } from "../pool/pool";
+import { Connection } from "../connection/connection";
 import { IQueryCacheOptions } from "./query-cache-options";
 
 /**
@@ -18,12 +18,12 @@ export interface IQueryCache {
   /**
    * Performs operations needs to be created during schema synchronization.
    */
-  synchronize(pool?: Pool): Promise<void>;
+  synchronize(pool?: Connection): Promise<void>;
 
   /**
    * Caches given query result.
    */
-  getFromCache(options: IQueryCacheOptions, queryRunner?: Pool): Promise<IQueryCacheOptions | undefined>;
+  getFromCache(options: IQueryCacheOptions, queryRunner?: Connection): Promise<IQueryCacheOptions | undefined>;
 
   /**
    * Stores given query result in the cache.
@@ -31,7 +31,7 @@ export interface IQueryCache {
   storeInCache(
     options: IQueryCacheOptions,
     savedCache: IQueryCacheOptions | undefined,
-    queryRunner?: Pool
+    queryRunner?: Connection
   ): Promise<void>;
 
   /**
@@ -42,10 +42,10 @@ export interface IQueryCache {
   /**
    * Clears everything stored in the cache.
    */
-  clear(queryRunner?: Pool): Promise<void>;
+  clear(queryRunner?: Connection): Promise<void>;
 
   /**
    * Removes all cached results by given identifiers from cache.
    */
-  remove(identifiers: string[], queryRunner?: Pool): Promise<void>;
+  remove(identifiers: string[], queryRunner?: Connection): Promise<void>;
 }

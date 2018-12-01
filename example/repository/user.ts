@@ -1,9 +1,9 @@
-import { IRepository } from "../../src";
+import { IQueryRunner } from "../../src";
 import { User } from "../entity/user";
 
-export class UserRepository implements IRepository<User> {
+export class UserRepository {
   public findById(id: string): Promise<User> {
-    throw new Error("Method not implemented.");
+    return this.queryRunner.query(``, []);
   }
   public update(entity: User): Promise<User> {
     throw new Error("Method not implemented.");
@@ -14,4 +14,6 @@ export class UserRepository implements IRepository<User> {
   public deleteById(id: string): Promise<void> {
     throw new Error("Method not implemented.");
   }
+
+  constructor(private queryRunner: IQueryRunner) {}
 }

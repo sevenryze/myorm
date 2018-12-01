@@ -1,7 +1,7 @@
 import { IQueryRunner } from "../../query-runner/query-runner";
 import { IDriver } from "../Driver";
 
-export interface IMongodbDriverOptions {
+export interface IMongoDriverOptions {
   type: "mongodb";
 }
 
@@ -16,5 +16,5 @@ export class MongoDriver implements IDriver {
     throw new Error("Method not implemented.");
   }
 
-  constructor(private options: IMongodbDriverOptions) {}
+  constructor(private options: IMongoDriverOptions) {}
 }

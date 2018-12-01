@@ -2,7 +2,7 @@ import { IQueryRunner } from "../query-runner";
 import { BaseQueryRunner } from "./base-query-runner";
 
 export class TransactionQueryRunner extends BaseQueryRunner implements IQueryRunner {
-  public async startTransaction(isolationLevel: string) {
+  public async startTransaction(isolationLevel?: string) {
     await this.queryIssuer.query(isolationLevel);
   }
   public async commitTransaction() {
