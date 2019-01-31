@@ -25,8 +25,7 @@
     "towerflow": "^1.3.11"
   },
   "dependencies": {
-    "@types/mysql": "^2.15.5",
-    "@types/node": "^10.12.11",
-    "mysql": "^2.16.0"
+    "@sevenryze/db-query": "^1.0.0",
+    "@types/node": "^10.12.11"
   }
 }

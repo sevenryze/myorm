@@ -1,6 +1,6 @@
-import { defaultDecoratorManager, IEntityClassConstructor } from "./decorator-manager";
-
-type ColumnType = string;
+import { ColumnMetadata, ColumnType } from "../column-metadata";
+import { IEntityClassConstructor } from "../interface";
+import { defaultMetadataManager } from "../metadata-manager";
 
 /**
  * Describes all column's options.
@@ -39,12 +39,6 @@ export interface IColumnOptions {
    * Default value is "false".
    */
   readonly?: boolean;
-
-  /**
-   * Indicates if column is always selected by QueryBuilder and find operations.
-   * Default value is "true".
-   */
-  select?: boolean;
 
   /**
    * Default database value.
@@ -105,12 +99,6 @@ export interface IColumnOptions {
    * Array of possible enumerated values.
    */
   enum?: string[];
-
-  /**
-   * Specifies a value transformer that is to be used to (un)marshal
-   * this column when reading or writing to the database.
-   */
-  transformer?: () => void;
 }
 
 /**
@@ -124,10 +112,11 @@ export function Column(options: IColumnOptions) {
     },
     propertyName: string
   ) => {
-    defaultDecoratorManager.columns.push({
-      options,
-      propertyName,
-      target: targetPrototype.constructor,
-    });
+    defaultMetadataManager.columns.push(
+      new ColumnMetadata({
+        propertyName,
+        target: targetPrototype.constructor,
+      })
+    );
   };
 }

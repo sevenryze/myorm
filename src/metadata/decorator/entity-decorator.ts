@@ -1,9 +1,11 @@
-import { defaultDecoratorManager, IEntityClassConstructor } from "./decorator-manager";
+import { EntityMetadata } from "../entity-metadata";
+import { IEntityClassConstructor } from "../interface";
+import { defaultMetadataManager } from "../metadata-manager";
 
 /**
  * Arguments for IndexMetadata class.
  */
-export interface IIndexOptions {
+export interface IEntityOptions {
   /**
    * Index name.
    */
@@ -56,11 +58,8 @@ export interface IIndexOptions {
  *
  * Can create indices with composite columns when used.
  */
-export function Index(options: IIndexOptions) {
+export function Entity(options: IEntityOptions) {
   return (targetConstructor: IEntityClassConstructor) => {
-    defaultDecoratorManager.indices.push({
-      options,
-      target: targetConstructor,
-    });
+    defaultMetadataManager.entities.push(new EntityMetadata());
   };
 }

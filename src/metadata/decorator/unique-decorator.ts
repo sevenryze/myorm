@@ -1,4 +1,6 @@
-import { defaultDecoratorManager, IEntityClassConstructor } from "./decorator-manager";
+import { IEntityClassConstructor } from "../interface";
+import { defaultMetadataManager } from "../metadata-manager";
+import { UniqueMetadata } from "../unique-metadata";
 
 /**
  * Arguments for UniqueMetadata class.
@@ -20,9 +22,6 @@ export interface IUniqueOptions {
  */
 export function Unique(options: IUniqueOptions) {
   return (targetConstructor: IEntityClassConstructor) => {
-    defaultDecoratorManager.uniques.push({
-      options,
-      target: targetConstructor,
-    });
+    defaultMetadataManager.uniques.push(new UniqueMetadata());
   };
 }
